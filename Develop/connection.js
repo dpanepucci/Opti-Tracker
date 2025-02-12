@@ -5,6 +5,7 @@ dotenv.config();
 // WHY WONT .ENV WORK??
 const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_NAME = process.env.DB_NAME;
 
 import pg from 'pg';
 const { Pool } = pg;
@@ -12,7 +13,7 @@ const { Pool } = pg;
 const pool = new Pool({
   user: DB_USER,
   host: 'localhost',
-  database: "employees_db",
+  database: DB_NAME,
   password: String(DB_PASSWORD),
   port: 5432,
 });
