@@ -4,3 +4,6 @@ jspm_packages/
 
 #Mac Users
 .DS_Store
+
+# Personal Information
+.env
