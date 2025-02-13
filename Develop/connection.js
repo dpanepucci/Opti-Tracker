@@ -28,13 +28,15 @@ const connection = pool;
 
 // Function to call the connection to the database to 'View all employees'
 async function viewAllDepartments() {
-    await connection.query('SELECT * FROM department', (err, result) => {
-       if (err) throw err;
-       console.table(result.rows);
-    });
-   }
+    try {
+        const result = await pool.query('SELECT * FROM department');
+        console.table(result.rows);
+    } catch (err) {
+        console.error(err);
+    }
+}
 
-   export { viewAllDepartments };
+export { viewAllDepartments };
 
 // Function to "Add Employee"
 async function addEmployee() {
@@ -63,22 +65,17 @@ async function addEmployee() {
         ]);
         await pool.query(
             `INSERT INTO employee (first_name, last_name, roles_id, manager_id) VALUES ($1, $2, $3, $4)`,
-            [employee.first_name, employee.last_name, employee.roles_id, employee.manager_id], (err, result)=> {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("Employee added successfully!");
-                }
-            })}
-            catch (err) {
-                console.log(err);
-            }
+            [employee.first_name, employee.last_name, employee.roles_id, employee.manager_id]
+        );
+        console.log("Employee added successfully!");
+    } catch (err) {
+        console.error(err);
     }
+}
 
-    export { addEmployee };
+export { addEmployee };
 
-
-//Function to "Update Employee Role"
+// Function to "Update Employee Role"
 async function updateEmployeeRole() {
     try {
         const employee = await inquirer.prompt([
@@ -95,31 +92,29 @@ async function updateEmployeeRole() {
         ]);
         await pool.query(
             `UPDATE employee SET roles_id = $1 WHERE id = $2`,
-            [employee.roles_id, employee.employee_id], (err, result)=> {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("Employee role updated successfully!");
-                }
-            })}
-            catch (err) {
-                console.log(err);
-            }
+            [employee.roles_id, employee.employee_id]
+        );
+        console.log("Employee role updated successfully!");
+    } catch (err) {
+        console.error(err);
     }
+}
 
-    export { updateEmployeeRole };
+export { updateEmployeeRole };
 
-//Function to View all roles'
+// Function to View all roles
 async function viewAllRoles() {
-    await connection.query('SELECT * FROM roles', (err, result) => {
-       if (err) throw err;
-       console.table(result.rows);
-    });
-   }
+    try {
+        const result = await pool.query('SELECT * FROM roles');
+        console.table(result.rows);
+    } catch (err) {
+        console.error(err);
+    }
+}
 
-   export { viewAllRoles };
+export { viewAllRoles };
 
-//Function to 'Add role'
+// Function to 'Add role'
 async function addRole() {
     try {
         const role = await inquirer.prompt([
@@ -141,21 +136,17 @@ async function addRole() {
         ]);
         await pool.query(
             `INSERT INTO roles (title, salary, department_id) VALUES ($1, $2, $3)`,
-            [role.title, role.salary, role.department_id], (err, result)=> {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("Role added successfully!");
-                }
-            })}
-            catch (err) {
-                console.log(err);
-            }
+            [role.title, role.salary, role.department_id]
+        );
+        console.log("Role added successfully!");
+    } catch (err) {
+        console.error(err);
     }
+}
 
-    export {addRole};
+export { addRole };
 
-//Function to 'Add Department'
+// Function to 'Add Department'
 async function addDepartment() {
     try {
         const department = await inquirer.prompt([
@@ -167,24 +158,32 @@ async function addDepartment() {
         ]);
         await pool.query(
             `INSERT INTO department (name) VALUES ($1)`,
-            [department.name], (err, result)=> {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("Department added successfully!");
-                }
-            })}
-            catch (err) {
-                console.log(err);
-            }
+            [department.name]
+        );
+        console.log("Department added successfully!");
+    } catch (err) {
+        console.error(err);
     }
+}
 
-    export {addDepartment};
+export { addDepartment };
 
-//Function to 'Quit'
-async function quit() {
+// Function to View all employees
+async function viewAllEmployees() {
+    try {
+        const result = await pool.query('SELECT * FROM employee');
+        console.table(result.rows);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export { viewAllEmployees };
+
+// Function to 'Quit'
+function quit() {
     console.log("Goodbye!");
     process.exit();
 }
 
-    export {quit};
+export { quit };
