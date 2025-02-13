@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { viewAllDepartments } from './connection.js';
+import { viewAllDepartments, addEmployee, updateEmployeeRole, viewAllRoles, addRole, addDepartment, quit } from './connection.js';
 
 class Cli {
     constructor(departments = []) {
@@ -31,11 +31,29 @@ class Cli {
 
         inquirer.prompt(questions).then(async (answers) => {  
             switch (answers.action) { 
-                // Add your logic for each case here
+                // Case for View all Departments
                 case 'View all departments':
                     viewAllDepartments();
                     break;
-                // Add other cases as needed
+                // Case for Add Employee
+                case 'Add Employee':
+                    addEmployee();
+                    break;
+                // Case for Update Employee Role
+                case 'Update Employee Role':
+                    updateEmployeeRole();
+                    break;
+                case 'View all roles':
+                        viewAllRoles();
+                    break;
+                case 'Add Role':
+                    addRole();
+                    break;
+                case 'Add Department':
+                    addDepartment();
+                    break;
+                case 'Quit':
+                    quit();
             }
         });
     }
@@ -43,36 +61,4 @@ class Cli {
 
 // Create an instance of the Cli class and call the start method
 const cli = new Cli();
-cli.start(); // This is the correct way to call the start method
-
-
-// inquirer.prompt(questions).then(async(answers) => {  
-//     switch (answers.action) { 
-// //         // case 'View all employees':
-// // //         // Add your logic here
-// // //         break;
-// // //       case 'Add Employee':
-// // //         // Add your logic here
-// // //         break;
-// // //       case 'Update Employee Role':
-// // //         // Add your logic here
-// // //         break;
-// // //       case 'View all roles':
-// // //         // Add your logic here
-// // //         break;
-// // //       case 'Add Role':
-// // //         // Add your logic here
-// // //         break;
-//       case 'View all departments':
-//         viewAllDepartments();
-//         break;
-// // //       case 'Add Department':
-// // //         // Add your logic here
-// // //         break;
-// // //       case 'Quit':
-// // //         // Add your logic here
-// // //         break;
-//     }
-//   });
-// }
-// }
+cli.start(); 
