@@ -23,9 +23,6 @@ pool.connect()
   .then(() => console.log('Connected to database'))
   .catch(err => console.error('Database connection error', err));
 
-export default pool;
-const connection = pool;
-
 // Function to call the connection to the database to 'View all employees'
 async function viewAllDepartments() {
     try {
