@@ -14,8 +14,7 @@
 This Command Line Application is used optimize employee information and tracking. Uses include Roles, Manager Title, Salary, departments plus options to add new ones to all of the above!
 
 ## Installation
-Copy Repo, npm i, node index.js
-
+Copy Repo to you local computer. In the command line run: npm i. Next run: node index.js. The application should start, follow prompts to use application.
 ## Usage
 Step 1. Scrolls through the options that best suite your needs.
 Step 2. Follow the propts and fill out the information needed.
