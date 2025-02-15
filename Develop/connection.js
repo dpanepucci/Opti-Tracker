@@ -154,7 +154,7 @@ async function addDepartment() {
             }
         ]);
         await pool.query(
-            `INSERT INTO department (name) VALUES ($1)`,
+            `INSERT INTO department (department_name) VALUES ($1)`,
             [department.name]
         );
         console.log("Department added successfully!");
